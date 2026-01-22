@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj8bmirk4dwql"]
+
+[ext_resource type="Texture2D" uid="uid://cwqfkcqttmqtk" path="res://textures/bar.png" id="1_41fda"]
+[ext_resource type="Script" uid="uid://bbrk63bl7g5sn" path="res://scenes/channel/channel.gd" id="2_jv228"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jv228"]
+resource_local_to_scene = true
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 5.0
+texture = ExtResource("1_41fda")
+axis_stretch_vertical = 1
+
+[node name="channel" type="Label"]
+custom_minimum_size = Vector2(211, 0)
+offset_top = 14.0
+offset_right = 211.0
+offset_bottom = 26.0
+size_flags_horizontal = 0
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_jv228")
+text = "# this is a test"
+clip_text = true
+text_overrun_behavior = 3
+script = ExtResource("2_jv228")

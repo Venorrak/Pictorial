@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmwe7u0ja7bd0"]
+
+[ext_resource type="Script" uid="uid://cou32tfewhorc" path="res://scenes/server/server.gd" id="2_jrpqo"]
+
+[node name="TextureRect" type="TextureRect"]
+texture_filter = 1
+custom_minimum_size = Vector2(44, 44)
+offset_right = 44.0
+offset_bottom = 44.0
+pivot_offset = Vector2(22, 22)
+script = ExtResource("2_jrpqo")

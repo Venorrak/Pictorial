@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://b2j563mvtpgy5"]
+
+[ext_resource type="Script" uid="uid://cw07glnnkyp43" path="res://scenes/Message/message.gd" id="1_kq8x2"]
+[ext_resource type="Texture2D" uid="uid://43bhlfu5it4u" path="res://textures/canvas-2.png" id="2_0s0lf"]
+[ext_resource type="Texture2D" uid="uid://lx7exlcn64v2" path="res://textures/canvas-1.png" id="2_35nsv"]
+[ext_resource type="Texture2D" uid="uid://wekajpkon67e" path="res://textures/canvas-3.png" id="4_8v8oh"]
+[ext_resource type="Texture2D" uid="uid://bt8rvmsy5o30r" path="res://textures/canvas-4.png" id="5_nji61"]
+[ext_resource type="Texture2D" uid="uid://ckh74wwde4nv2" path="res://textures/canvas.png" id="6_c7wmw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xhgh7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hrdlm"]
+content_margin_left = 4.0
+
+[node name="Message" type="PanelContainer" node_paths=PackedStringArray("bg", "canvas", "label")]
+offset_right = 234.0
+offset_bottom = 35.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xhgh7")
+script = ExtResource("1_kq8x2")
+sprites = Array[Texture2D]([ExtResource("2_35nsv"), ExtResource("2_0s0lf"), ExtResource("4_8v8oh"), ExtResource("5_nji61"), ExtResource("6_c7wmw")])
+bg = NodePath("bg")
+canvas = NodePath("canvas")
+label = NodePath("Label")
+
+[node name="bg" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_35nsv")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 6
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hrdlm")
+autowrap_mode = 1
+clip_text = true
+text_overrun_behavior = 5
+
+[node name="canvas" type="TextureRect" parent="."]
+layout_mode = 2
+stretch_mode = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true

@@ -1,0 +1,313 @@
+[gd_scene load_steps=28 format=3 uid="uid://do723hs613s4o"]
+
+[ext_resource type="Theme" uid="uid://bg5p7i2hjhv7k" path="res://other/mainTheme.tres" id="1_ow5a4"]
+[ext_resource type="Script" uid="uid://bfy7njtkh2v8o" path="res://scenes/main/main.gd" id="2_hujxm"]
+[ext_resource type="Texture2D" uid="uid://c38r2u0a0oj8i" path="res://textures/bg.png" id="3_yyfjg"]
+[ext_resource type="Script" uid="uid://dhr74pfc6u11r" path="res://scenes/inputs/text/mainInput.gd" id="5_a8run"]
+[ext_resource type="Script" uid="uid://dw3edy53pjb6k" path="res://scenes/inputs/canvas/canvas.gd" id="6_hujxm"]
+[ext_resource type="Shader" uid="uid://ci5m1vthfyp3v" path="res://other/reverse.gdshader" id="6_ouso4"]
+[ext_resource type="Script" uid="uid://cgdu0qrnfs1fh" path="res://scenes/main/chat_section.gd" id="7_ou6is"]
+[ext_resource type="Texture2D" uid="uid://bbw3ilyk40wns" path="res://textures/send.png" id="8_hxu8e"]
+[ext_resource type="Script" uid="uid://d1ctefg60ukm6" path="res://scenes/inputs/focusButton.gd" id="8_yyfjg"]
+[ext_resource type="Texture2D" uid="uid://dh1rv0v5ueyuk" path="res://textures/keyboard.png" id="9_nvumn"]
+[ext_resource type="PackedScene" uid="uid://cj8bmirk4dwql" path="res://scenes/channel/channel.tscn" id="10_7smn1"]
+[ext_resource type="Script" uid="uid://cghxsaxjshfaf" path="res://scenes/main/channelList.gd" id="10_hxu8e"]
+[ext_resource type="Texture2D" uid="uid://g2wg0v572i3w" path="res://textures/zoom.png" id="11_ou6is"]
+[ext_resource type="Texture2D" uid="uid://1kh0wp143spi" path="res://textures/unzoom.png" id="12_necax"]
+[ext_resource type="Texture2D" uid="uid://cwqfkcqttmqtk" path="res://textures/bar.png" id="12_nvumn"]
+[ext_resource type="Texture2D" uid="uid://bekmoot8g4lko" path="res://textures/trash.png" id="14_nvumn"]
+[ext_resource type="PackedScene" uid="uid://b2j563mvtpgy5" path="res://scenes/Message/message.tscn" id="14_ou6is"]
+[ext_resource type="Script" uid="uid://di636ejk5e6aw" path="res://scenes/inputs/input_handler.gd" id="15_ou6is"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yyfjg"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2926924, 0.29269245, 0.29269224, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ou6is"]
+resource_local_to_scene = true
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 5.0
+texture = ExtResource("12_nvumn")
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_necax"]
+resource_local_to_scene = true
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 5.0
+texture = ExtResource("12_nvumn")
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r4lks"]
+resource_local_to_scene = true
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 5.0
+texture = ExtResource("12_nvumn")
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pg34l"]
+resource_local_to_scene = true
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 5.0
+texture = ExtResource("12_nvumn")
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m4h2d"]
+resource_local_to_scene = true
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 5.0
+texture = ExtResource("12_nvumn")
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p8abn"]
+resource_local_to_scene = true
+content_margin_left = 5.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 5.0
+texture = ExtResource("12_nvumn")
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_raeie"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sugp2"]
+shader = ExtResource("6_ouso4")
+shader_parameter/gray_threshold = 0.02
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_ow5a4")
+
+[node name="bg" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_yyfjg")
+stretch_mode = 1
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.6667
+
+[node name="Main" type="Control" parent="AspectRatioContainer"]
+custom_minimum_size = Vector2(1000, 600)
+layout_mode = 2
+script = ExtResource("2_hujxm")
+
+[node name="PanelContainer" type="PanelContainer" parent="AspectRatioContainer/Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yyfjg")
+
+[node name="sections" type="HBoxContainer" parent="AspectRatioContainer/Main/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="AspectRatioContainer/Main/PanelContainer/sections"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="contextPanel" type="ScrollContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+horizontal_scroll_mode = 0
+
+[node name="channels" type="VBoxContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+script = ExtResource("10_hxu8e")
+
+[node name="channel" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" instance=ExtResource("10_7smn1")]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_ou6is")
+text = "# programs"
+
+[node name="channel2" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" instance=ExtResource("10_7smn1")]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_necax")
+text = "# documents"
+
+[node name="channel3" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" instance=ExtResource("10_7smn1")]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_r4lks")
+text = "# settings"
+
+[node name="channel4" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" instance=ExtResource("10_7smn1")]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_pg34l")
+text = "# search"
+
+[node name="channel5" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" instance=ExtResource("10_7smn1")]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_m4h2d")
+text = "# help"
+
+[node name="channel6" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" instance=ExtResource("10_7smn1")]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_p8abn")
+text = "# run..."
+
+[node name="VSeparator" type="VSeparator" parent="AspectRatioContainer/Main/PanelContainer/sections"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer/Main/PanelContainer/sections"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="mainPanel" type="VBoxContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="chatSection" type="ScrollContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel" node_paths=PackedStringArray("list")]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+script = ExtResource("7_ou6is")
+list = NodePath("messages")
+
+[node name="messages" type="VBoxContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/chatSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+
+[node name="inputSection" type="HBoxContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="canvasOption" type="VBoxContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection"]
+layout_mode = 2
+
+[node name="VSlider" type="VSlider" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/canvasOption"]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
+max_value = 15.0
+value = 3.0
+scrollable = false
+tick_count = 15
+ticks_position = 3
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/canvasOption"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+edit_alpha = false
+edit_intensity = false
+
+[node name="reset" type="Button" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/canvasOption"]
+layout_mode = 2
+icon = ExtResource("14_nvumn")
+
+[node name="other" type="VBoxContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection"]
+layout_mode = 2
+alignment = 2
+
+[node name="Send" type="Button" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/other"]
+layout_mode = 2
+icon = ExtResource("8_hxu8e")
+
+[node name="focusKey" type="Button" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/other" node_paths=PackedStringArray("toFocus")]
+layout_mode = 2
+icon = ExtResource("9_nvumn")
+script = ExtResource("8_yyfjg")
+toFocus = NodePath("../../inputHandler/AspectRatioContainer/TextEdit")
+
+[node name="canvasBigger" type="Button" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/other"]
+layout_mode = 2
+icon = ExtResource("11_ou6is")
+
+[node name="canvasSmaller" type="Button" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/other"]
+layout_mode = 2
+icon = ExtResource("12_necax")
+
+[node name="inputHandler" type="PanelContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection" node_paths=PackedStringArray("textInput", "canvasInput", "messageSpawner")]
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_raeie")
+script = ExtResource("15_ou6is")
+textInput = NodePath("AspectRatioContainer/TextEdit")
+canvasInput = NodePath("AspectRatioContainer/TextureRect")
+messageSpawner = NodePath("../../chatSection/messages")
+messageScene = ExtResource("14_ou6is")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/inputHandler"]
+layout_mode = 2
+ratio = 2.7529
+stretch_mode = 1
+alignment_vertical = 2
+
+[node name="TextEdit" type="TextEdit" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/inputHandler/AspectRatioContainer" node_paths=PackedStringArray("handler")]
+layout_mode = 2
+theme_override_constants/line_spacing = 6
+theme_override_font_sizes/font_size = 35
+context_menu_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+autowrap_mode = 1
+caret_blink = true
+caret_move_on_right_click = false
+caret_multiple = false
+script = ExtResource("5_a8run")
+handler = NodePath("../..")
+
+[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/inputHandler/AspectRatioContainer" node_paths=PackedStringArray("textEdit")]
+layout_mode = 2
+script = ExtResource("6_hujxm")
+textEdit = NodePath("../TextEdit")
+
+[node name="dark" type="ColorRect" parent="AspectRatioContainer/Main"]
+visible = false
+material = SubResource("ShaderMaterial_sugp2")
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="value_changed" from="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/canvasOption/VSlider" to="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/inputHandler/AspectRatioContainer/TextureRect" method="_on_v_slider_value_changed"]
+[connection signal="color_changed" from="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/canvasOption/ColorPickerButton" to="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/inputHandler/AspectRatioContainer/TextureRect" method="_on_color_picker_button_color_changed"]
+[connection signal="button_up" from="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/canvasOption/reset" to="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/inputHandler/AspectRatioContainer/TextEdit" method="_on_reset_button_up"]
+[connection signal="button_up" from="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/canvasOption/reset" to="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/inputHandler/AspectRatioContainer/TextureRect" method="_reset"]
+[connection signal="button_up" from="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/other/Send" to="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/inputHandler" method="send"]
+[connection signal="button_up" from="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/other/canvasBigger" to="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/inputHandler" method="_zoom"]
+[connection signal="button_up" from="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/other/canvasSmaller" to="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/inputHandler" method="_unzoom"]
