@@ -13,7 +13,6 @@ var tween : Tween
 var fontSizeRef : PackedInt32Array = [35, 39, 43, 47, 51]
 var lineSpacingRef : PackedInt32Array = [6, 7, 8, 9, 9]
 var targetPosition: Vector2
-var canvasRef : CanvasInput
 
 func _ready() -> void:
 	bg.texture = sprites[nbOfLines - 1]

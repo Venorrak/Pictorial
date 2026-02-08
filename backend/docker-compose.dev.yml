@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: pictorial-postgres-dev
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: pictorial
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+    networks:
+      - pictorial-dev-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API (Development Mode with Hot Reload)
+  backend:
+    image: cosmtrek/air:latest
+    container_name: pictorial-backend-dev
+    working_dir: /app
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: pictorial
+      JWT_SECRET: dev-secret-key-not-for-production
+      PORT: 8080
+      GIN_MODE: debug
+    ports:
+      - "8080:8080"
+    volumes:
+      # Mount source code for live reload
+      - .:/app
+      # Cache Go modules to speed up rebuilds
+      - go-modules:/go/pkg/mod
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - pictorial-dev-network
+    command: air -c .air.toml
+    restart: unless-stopped
+
+networks:
+  pictorial-dev-network:
+    driver: bridge
+
+volumes:
+  postgres_dev_data:
+  go-modules:

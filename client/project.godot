@@ -8,22 +8,34 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Pictorial"
 run/main_scene="uid://do723hs613s4o"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=60
 boot_splash/bg_color=Color(1, 1, 1, 1)
 boot_splash/use_filter=false
 boot_splash/image="uid://djsy4s65qu74f"
 config/icon="uid://djsy4s65qu74f"
 
+[autoload]
+
+Backend="*uid://k7w2xitt85yx"
+
 [display]
 
 window/size/viewport_width=1000
 window/size/viewport_height=600
 display_server/driver.linuxbsd="wayland"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/log/plugin.cfg", "res://addons/reload_current_scene/plugin.cfg")
 
 [gui]
 

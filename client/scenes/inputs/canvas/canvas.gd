@@ -52,7 +52,7 @@ func _is_inside(_globalPosition: Vector2, event: InputEventMouse) -> bool:
 func get_number_of_lines_used() -> int:
 	var lineHeight : float = currentImg.get_height() / 5.0
 	var lowestY : int = currentImg.get_used_rect().position.y + currentImg.get_used_rect().size.y
-	if currentImg.is_invisible() : return 0
+	if currentImg.is_invisible() or currentImg.is_empty() : return 0
 	return clamp((lowestY / lineHeight) + 1, 1, 5)
 	
 func get_lines(nbOfLines: int) -> Image:

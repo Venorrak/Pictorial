@@ -4,24 +4,21 @@ class_name inputHandler
 @export var textInput : TextInput
 @export var canvasInput : CanvasInput
 
-@export var messageSpawner : Control
-@export var messageScene : PackedScene
-
 var fontSizeRef : PackedInt32Array = [35, 39, 43, 47, 51]
 var lineSpacingRef : PackedInt32Array = [6, 7, 8, 9, 9]
 
 func send() -> void:
 	var height : int = max(textInput.get_number_of_lines_used(), canvasInput.get_number_of_lines_used())
 	if not height: return
-	var img : Image = canvasInput.get_lines(height)
-	var text : String = textInput.text
+	var img = canvasInput.get_lines(height)
+	var text = textInput.text
 	
-	var newMessage = messageScene.instantiate()
-	newMessage.nbOfLines = height
-	newMessage.text = text
-	newMessage.drawing = img
-	newMessage.canvasRef = canvasInput
-	messageSpawner.add_child(newMessage)
+	if textInput.get_number_of_lines_used() == 0:
+		text = null
+	if canvasInput.get_number_of_lines_used() == 0:
+		img = null
+
+	Backend.create_message(1, text, img)
 	
 	textInput.clear()
 	canvasInput._reset()

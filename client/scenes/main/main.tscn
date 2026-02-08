@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://do723hs613s4o"]
+[gd_scene format=3 uid="uid://do723hs613s4o"]
 
 [ext_resource type="Theme" uid="uid://bg5p7i2hjhv7k" path="res://other/mainTheme.tres" id="1_ow5a4"]
 [ext_resource type="Script" uid="uid://bfy7njtkh2v8o" path="res://scenes/main/main.gd" id="2_hujxm"]
@@ -91,7 +91,7 @@ axis_stretch_vertical = 1
 shader = ExtResource("6_ouso4")
 shader_parameter/gray_threshold = 0.02
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=497685597]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,7 +102,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_ow5a4")
 
-[node name="bg" type="TextureRect" parent="."]
+[node name="bg" type="TextureRect" parent="." unique_id=2014655041]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,7 +112,7 @@ grow_vertical = 2
 texture = ExtResource("3_yyfjg")
 stretch_mode = 1
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="." unique_id=1288129476]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -121,12 +121,12 @@ grow_horizontal = 2
 grow_vertical = 2
 ratio = 1.6667
 
-[node name="Main" type="Control" parent="AspectRatioContainer"]
+[node name="Main" type="Control" parent="AspectRatioContainer" unique_id=1904457740]
 custom_minimum_size = Vector2(1000, 600)
 layout_mode = 2
 script = ExtResource("2_hujxm")
 
-[node name="PanelContainer" type="PanelContainer" parent="AspectRatioContainer/Main"]
+[node name="PanelContainer" type="PanelContainer" parent="AspectRatioContainer/Main" unique_id=1023267519]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -135,87 +135,89 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yyfjg")
 
-[node name="sections" type="HBoxContainer" parent="AspectRatioContainer/Main/PanelContainer"]
+[node name="sections" type="HBoxContainer" parent="AspectRatioContainer/Main/PanelContainer" unique_id=1096382677]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="MarginContainer2" type="MarginContainer" parent="AspectRatioContainer/Main/PanelContainer/sections"]
+[node name="MarginContainer2" type="MarginContainer" parent="AspectRatioContainer/Main/PanelContainer/sections" unique_id=1640889509]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="contextPanel" type="ScrollContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2"]
+[node name="contextPanel" type="ScrollContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2" unique_id=2088782912]
 layout_mode = 2
 size_flags_horizontal = 0
 horizontal_scroll_mode = 0
 
-[node name="channels" type="VBoxContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel"]
+[node name="channels" type="VBoxContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel" unique_id=1269457171]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 script = ExtResource("10_hxu8e")
 
-[node name="channel" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" instance=ExtResource("10_7smn1")]
+[node name="channel" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" unique_id=1779591509 instance=ExtResource("10_7smn1")]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_ou6is")
 text = "# programs"
 
-[node name="channel2" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" instance=ExtResource("10_7smn1")]
+[node name="channel2" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" unique_id=155524804 instance=ExtResource("10_7smn1")]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_necax")
 text = "# documents"
 
-[node name="channel3" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" instance=ExtResource("10_7smn1")]
+[node name="channel3" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" unique_id=1138133222 instance=ExtResource("10_7smn1")]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_r4lks")
 text = "# settings"
 
-[node name="channel4" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" instance=ExtResource("10_7smn1")]
+[node name="channel4" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" unique_id=1943185816 instance=ExtResource("10_7smn1")]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_pg34l")
 text = "# search"
 
-[node name="channel5" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" instance=ExtResource("10_7smn1")]
+[node name="channel5" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" unique_id=1739248191 instance=ExtResource("10_7smn1")]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_m4h2d")
 text = "# help"
 
-[node name="channel6" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" instance=ExtResource("10_7smn1")]
+[node name="channel6" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" unique_id=479810393 instance=ExtResource("10_7smn1")]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_p8abn")
 text = "# run..."
 
-[node name="VSeparator" type="VSeparator" parent="AspectRatioContainer/Main/PanelContainer/sections"]
+[node name="VSeparator" type="VSeparator" parent="AspectRatioContainer/Main/PanelContainer/sections" unique_id=734426046]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer/Main/PanelContainer/sections"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="mainPanel" type="VBoxContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer/Main/PanelContainer/sections" unique_id=423977350]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="chatSection" type="ScrollContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel" node_paths=PackedStringArray("list")]
+[node name="mainPanel" type="VBoxContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer" unique_id=1830927021]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="chatSection" type="ScrollContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel" unique_id=2134070141 node_paths=PackedStringArray("list", "messageSpawner")]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 script = ExtResource("7_ou6is")
 list = NodePath("messages")
+messageSpawner = NodePath("messages")
+messageScene = ExtResource("14_ou6is")
 
-[node name="messages" type="VBoxContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/chatSection"]
+[node name="messages" type="VBoxContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/chatSection" unique_id=181562646]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 2
 
-[node name="inputSection" type="HBoxContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel"]
+[node name="inputSection" type="HBoxContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel" unique_id=1891574516]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="canvasOption" type="VBoxContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection"]
+[node name="canvasOption" type="VBoxContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection" unique_id=144995349]
 layout_mode = 2
 
-[node name="VSlider" type="VSlider" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/canvasOption"]
+[node name="VSlider" type="VSlider" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/canvasOption" unique_id=67711947]
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 3
@@ -225,39 +227,39 @@ scrollable = false
 tick_count = 15
 ticks_position = 3
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/canvasOption"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/canvasOption" unique_id=1123847762]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 edit_alpha = false
 edit_intensity = false
 
-[node name="reset" type="Button" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/canvasOption"]
+[node name="reset" type="Button" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/canvasOption" unique_id=376192320]
 layout_mode = 2
 icon = ExtResource("14_nvumn")
 
-[node name="other" type="VBoxContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection"]
+[node name="other" type="VBoxContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection" unique_id=81689836]
 layout_mode = 2
 alignment = 2
 
-[node name="Send" type="Button" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/other"]
+[node name="Send" type="Button" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/other" unique_id=1141133685]
 layout_mode = 2
 icon = ExtResource("8_hxu8e")
 
-[node name="focusKey" type="Button" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/other" node_paths=PackedStringArray("toFocus")]
+[node name="focusKey" type="Button" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/other" unique_id=363044925 node_paths=PackedStringArray("toFocus")]
 layout_mode = 2
 icon = ExtResource("9_nvumn")
 script = ExtResource("8_yyfjg")
 toFocus = NodePath("../../inputHandler/AspectRatioContainer/TextEdit")
 
-[node name="canvasBigger" type="Button" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/other"]
+[node name="canvasBigger" type="Button" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/other" unique_id=1326698043]
 layout_mode = 2
 icon = ExtResource("11_ou6is")
 
-[node name="canvasSmaller" type="Button" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/other"]
+[node name="canvasSmaller" type="Button" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/other" unique_id=1138441189]
 layout_mode = 2
 icon = ExtResource("12_necax")
 
-[node name="inputHandler" type="PanelContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection" node_paths=PackedStringArray("textInput", "canvasInput", "messageSpawner")]
+[node name="inputHandler" type="PanelContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection" unique_id=915218646 node_paths=PackedStringArray("textInput", "canvasInput")]
 custom_minimum_size = Vector2(0, 170)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -265,16 +267,14 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_raeie")
 script = ExtResource("15_ou6is")
 textInput = NodePath("AspectRatioContainer/TextEdit")
 canvasInput = NodePath("AspectRatioContainer/TextureRect")
-messageSpawner = NodePath("../../chatSection/messages")
-messageScene = ExtResource("14_ou6is")
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/inputHandler"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/inputHandler" unique_id=741177679]
 layout_mode = 2
 ratio = 2.7529
 stretch_mode = 1
 alignment_vertical = 2
 
-[node name="TextEdit" type="TextEdit" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/inputHandler/AspectRatioContainer" node_paths=PackedStringArray("handler")]
+[node name="TextEdit" type="TextEdit" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/inputHandler/AspectRatioContainer" unique_id=222076692 node_paths=PackedStringArray("handler")]
 layout_mode = 2
 theme_override_constants/line_spacing = 6
 theme_override_font_sizes/font_size = 35
@@ -290,12 +290,12 @@ caret_multiple = false
 script = ExtResource("5_a8run")
 handler = NodePath("../..")
 
-[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/inputHandler/AspectRatioContainer" node_paths=PackedStringArray("textEdit")]
+[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer/mainPanel/inputSection/inputHandler/AspectRatioContainer" unique_id=599819030 node_paths=PackedStringArray("textEdit")]
 layout_mode = 2
 script = ExtResource("6_hujxm")
 textEdit = NodePath("../TextEdit")
 
-[node name="dark" type="ColorRect" parent="AspectRatioContainer/Main"]
+[node name="dark" type="ColorRect" parent="AspectRatioContainer/Main" unique_id=163738030]
 visible = false
 material = SubResource("ShaderMaterial_sugp2")
 layout_mode = 0
