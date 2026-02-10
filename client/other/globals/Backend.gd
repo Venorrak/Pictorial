@@ -1,11 +1,13 @@
 extends Node
 
 signal new_message(message: Dictionary)
+signal logged_in
 
 # TODO: save credentials in local storage
 var _jwt : String
 var _baseUrl : String = "http://localhost:8080"
 var _socket = WebSocketPeer.new()
+var user : Dictionary
 
 func _ready() -> void:
 	set_process(false)
@@ -24,6 +26,8 @@ func login(username: String, password: String) -> bool: ## POST /api/v1/auth/log
 		if resp.status_ok():
 			var r : Dictionary = resp.body_as_variant() as Dictionary
 			_jwt = r["token"]
+			user = r["user"]
+			logged_in.emit()
 			_saveAuth(username, password)
 			connect_websocket()
 			return true
@@ -47,6 +51,8 @@ func register(username: String, password: String) -> bool: ## POST /api/v1/auth/
 		if resp.status_ok():
 			var r : Dictionary = resp.body_as_variant() as Dictionary
 			_jwt = r["token"]
+			user = r["user"]
+			logged_in.emit()
 			_saveAuth(username, password)
 			return true
 		else:
@@ -69,12 +75,12 @@ func create_channel(channelName: String, description: String) -> bool: ## POST /
 			Log.error(_baseUrl + "/api/v1/channels : " + resp.body_as_variant()["error"])
 	return false
 
-func get_channels() -> Array[Dictionary]: ## GET /api/v1/channels
+func get_channels() -> Array: ## GET /api/v1/channels
 	var resp : HTTPResult = await async_request.async_request_strap(
 		self, _baseUrl + "/api/v1/channels", ["Authorization: Bearer " + _jwt])
 	if resp.success():
 		if resp.status_ok():
-			var r : Array[Dictionary] = resp.body_as_variant() as Array[Dictionary]
+			var r : Array = resp.body_as_variant() as Array
 			Log.pr(r)
 			return r
 		else:
@@ -121,21 +127,23 @@ func delete_channel(id: int) -> bool: ## DELETE /api/v1/channels/:id
 			Log.error(_baseUrl + "/api/v1/channels/" + str(id) + " : " + resp.body_as_variant()["error"])
 	return false
 
-func get_channel_messages(channelId: int, page: int = 1, limit: int = 20) -> Array[Dictionary]: ## GET /api/v1/channels/:id/messages?page=1&limit=50
+func get_channel_messages(channelId: int, page: int = 1, limit: int = 20) -> Array: ## GET /api/v1/channels/:id/messages?page=1&limit=50
 	var resp: HTTPResult = await async_request.async_request_strap(
 		self, _baseUrl + "/api/v1/channels/" + str(channelId) + "/messages?page=" + str(page) + "&limit=" + str(limit), ["Authorization: Bearer " + _jwt])
 	if resp.success():
 		if resp.status_ok():
-			var r : Array[Dictionary] = resp.body_as_variant() as Array[Dictionary]
-			Log.pr(r)
-			return r
+			if resp.body_as_variant():
+				var r : Array = resp.body_as_variant() as Array
+				Log.pr(r)
+				return r
 		else:
 			Log.error(_baseUrl + "/api/v1/channels/" + str(channelId) + "/messages : " + resp.body_as_variant()["error"])
 	return []
 	
-func create_message(channelId: int, text, image) -> bool: ## POST /api/v1/messages
+func create_message(channelId: int, nbOfLines: int, text, image) -> bool: ## POST /api/v1/messages
 	var b : Dictionary = {
-		"channel_id": channelId
+		"channel_id": channelId,
+		"nb_of_lines": nbOfLines
 	}
 	if text: b.set("content", text)
 	if image:
@@ -182,13 +190,13 @@ func get_message_image(id: int) -> Image: ## GET /api/v1/messages/:id/image
 	
 func delete_message(id: int) -> bool: ## DELETE /api/v1/messages/:id
 	var resp : HTTPResult = await async_request.async_request_strap(
-		self, _baseUrl + "/api/v1/messages:" + str(id), ["Authorization: Bearer " + _jwt], HTTPClient.METHOD_DELETE)
+		self, _baseUrl + "/api/v1/messages/" + str(id), ["Authorization: Bearer " + _jwt], HTTPClient.METHOD_DELETE)
 	if resp.success():
 		if resp.status_ok():
 			var r : Dictionary = resp.body_as_variant() as Dictionary
 			Log.pr(r)
 			return true
-		else:
+		elif resp.body_as_variant():
 			Log.error(_baseUrl + "/api/v1/messages:" + str(id) + " : " + resp.body_as_variant()["error"])
 	return false
 
@@ -258,4 +266,9 @@ func _clearAuth() -> void:
 	var file = FileAccess.open(saveLocation, FileAccess.WRITE)
 	file.store_var(null)
 	file.close()
-	
+
+func is_admin() -> bool:
+	if user:
+		return user["role"] == "admin"
+	else:
+		return false

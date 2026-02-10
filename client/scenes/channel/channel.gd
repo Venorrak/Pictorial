@@ -3,6 +3,7 @@ class_name channelLabel
 
 signal _select(emitter: Label)
 
+var id: int
 var _theme : StyleBoxTexture
 var selected : bool = false:
 	set(value):
@@ -40,4 +41,5 @@ func _unselect() -> void:
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton && event.button_mask == 1 && not event.is_echo():
 		if event.pressed:
-			selected = !selected
+			if not selected:
+				selected = true

@@ -18,7 +18,7 @@ func send() -> void:
 	if canvasInput.get_number_of_lines_used() == 0:
 		img = null
 
-	Backend.create_message(1, text, img)
+	Backend.create_message(State.channelId, height, text, img)
 	
 	textInput.clear()
 	canvasInput._reset()

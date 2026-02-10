@@ -14,7 +14,6 @@
 [ext_resource type="Script" uid="uid://cghxsaxjshfaf" path="res://scenes/main/channelList.gd" id="10_hxu8e"]
 [ext_resource type="Texture2D" uid="uid://g2wg0v572i3w" path="res://textures/zoom.png" id="11_ou6is"]
 [ext_resource type="Texture2D" uid="uid://1kh0wp143spi" path="res://textures/unzoom.png" id="12_necax"]
-[ext_resource type="Texture2D" uid="uid://cwqfkcqttmqtk" path="res://textures/bar.png" id="12_nvumn"]
 [ext_resource type="Texture2D" uid="uid://bekmoot8g4lko" path="res://textures/trash.png" id="14_nvumn"]
 [ext_resource type="PackedScene" uid="uid://b2j563mvtpgy5" path="res://scenes/Message/message.tscn" id="14_ou6is"]
 [ext_resource type="Script" uid="uid://di636ejk5e6aw" path="res://scenes/inputs/input_handler.gd" id="15_ou6is"]
@@ -30,60 +29,6 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.2926924, 0.29269245, 0.29269224, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ou6is"]
-resource_local_to_scene = true
-content_margin_left = 5.0
-content_margin_top = 3.0
-content_margin_right = 3.0
-content_margin_bottom = 5.0
-texture = ExtResource("12_nvumn")
-axis_stretch_vertical = 1
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_necax"]
-resource_local_to_scene = true
-content_margin_left = 5.0
-content_margin_top = 3.0
-content_margin_right = 3.0
-content_margin_bottom = 5.0
-texture = ExtResource("12_nvumn")
-axis_stretch_vertical = 1
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r4lks"]
-resource_local_to_scene = true
-content_margin_left = 5.0
-content_margin_top = 3.0
-content_margin_right = 3.0
-content_margin_bottom = 5.0
-texture = ExtResource("12_nvumn")
-axis_stretch_vertical = 1
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pg34l"]
-resource_local_to_scene = true
-content_margin_left = 5.0
-content_margin_top = 3.0
-content_margin_right = 3.0
-content_margin_bottom = 5.0
-texture = ExtResource("12_nvumn")
-axis_stretch_vertical = 1
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m4h2d"]
-resource_local_to_scene = true
-content_margin_left = 5.0
-content_margin_top = 3.0
-content_margin_right = 3.0
-content_margin_bottom = 5.0
-texture = ExtResource("12_nvumn")
-axis_stretch_vertical = 1
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p8abn"]
-resource_local_to_scene = true
-content_margin_left = 5.0
-content_margin_top = 3.0
-content_margin_right = 3.0
-content_margin_bottom = 5.0
-texture = ExtResource("12_nvumn")
-axis_stretch_vertical = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_raeie"]
 
@@ -153,36 +98,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 script = ExtResource("10_hxu8e")
-
-[node name="channel" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" unique_id=1779591509 instance=ExtResource("10_7smn1")]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_ou6is")
-text = "# programs"
-
-[node name="channel2" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" unique_id=155524804 instance=ExtResource("10_7smn1")]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_necax")
-text = "# documents"
-
-[node name="channel3" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" unique_id=1138133222 instance=ExtResource("10_7smn1")]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_r4lks")
-text = "# settings"
-
-[node name="channel4" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" unique_id=1943185816 instance=ExtResource("10_7smn1")]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_pg34l")
-text = "# search"
-
-[node name="channel5" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" unique_id=1739248191 instance=ExtResource("10_7smn1")]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_m4h2d")
-text = "# help"
-
-[node name="channel6" parent="AspectRatioContainer/Main/PanelContainer/sections/MarginContainer2/contextPanel/channels" unique_id=479810393 instance=ExtResource("10_7smn1")]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_p8abn")
-text = "# run..."
+channelScene = ExtResource("10_7smn1")
 
 [node name="VSeparator" type="VSeparator" parent="AspectRatioContainer/Main/PanelContainer/sections" unique_id=734426046]
 layout_mode = 2

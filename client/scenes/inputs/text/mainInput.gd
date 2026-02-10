@@ -47,3 +47,4 @@ func get_number_of_lines_used() -> int:
 
 func _on_reset_button_up() -> void:
 	clear()
+	grab_focus()

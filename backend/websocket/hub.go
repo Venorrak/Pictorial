@@ -7,8 +7,8 @@ import (
 
 // Hub maintains the set of active clients and broadcasts messages to the clients
 type Hub struct {
-	// Registered clients mapped by user ID
-	clients map[uint]*Client
+	// Registered clients mapped by user ID (multiple clients per user)
+	clients map[uint]map[*Client]bool
 
 	// Channel subscriptions: channelID -> set of userIDs
 	subscriptions map[uint]map[uint]bool
@@ -46,7 +46,7 @@ type Subscription struct {
 // NewHub creates a new Hub instance
 func NewHub() *Hub {
 	return &Hub{
-		clients:       make(map[uint]*Client),
+		clients:       make(map[uint]map[*Client]bool),
 		subscriptions: make(map[uint]map[uint]bool),
 		register:      make(chan *Client),
 		unregister:    make(chan *Client),
@@ -62,24 +62,33 @@ func (h *Hub) Run() {
 		select {
 		case client := <-h.register:
 			h.mu.Lock()
-			h.clients[client.userID] = client
+			if h.clients[client.userID] == nil {
+				h.clients[client.userID] = make(map[*Client]bool)
+			}
+			h.clients[client.userID][client] = true
 			h.mu.Unlock()
-			log.Printf("Client registered for user %d", client.userID)
+			log.Printf("Client registered for user %d (total connections: %d)", client.userID, len(h.clients[client.userID]))
 
 		case client := <-h.unregister:
 			h.mu.Lock()
-			if _, ok := h.clients[client.userID]; ok {
-				delete(h.clients, client.userID)
+			if clientSet, ok := h.clients[client.userID]; ok {
+				delete(clientSet, client)
 				close(client.send)
 
-				// Remove user from all channel subscriptions
-				for channelID, subscribers := range h.subscriptions {
-					delete(subscribers, client.userID)
-					if len(subscribers) == 0 {
-						delete(h.subscriptions, channelID)
+				// If user has no more connections, remove from subscriptions
+				if len(clientSet) == 0 {
+					delete(h.clients, client.userID)
+					// Remove user from all channel subscriptions
+					for channelID, subscribers := range h.subscriptions {
+						delete(subscribers, client.userID)
+						if len(subscribers) == 0 {
+							delete(h.subscriptions, channelID)
+						}
 					}
+					log.Printf("Last client unregistered for user %d", client.userID)
+				} else {
+					log.Printf("Client unregistered for user %d (remaining connections: %d)", client.userID, len(clientSet))
 				}
-				log.Printf("Client unregistered for user %d", client.userID)
 			}
 			h.mu.Unlock()
 
@@ -110,18 +119,21 @@ func (h *Hub) Run() {
 
 			for userID := range subscribers {
 				h.mu.RLock()
-				client, ok := h.clients[userID]
+				clientSet, ok := h.clients[userID]
 				h.mu.RUnlock()
 
 				if ok {
-					select {
-					case client.send <- message.Message:
-					default:
-						// Client's send channel is full, unregister it
-						go func(c *Client) {
-							h.unregister <- c
-						}(client)
-						log.Printf("Client send buffer full, disconnecting user %d", userID)
+					// Send to all clients for this user
+					for client := range clientSet {
+						select {
+						case client.send <- message.Message:
+						default:
+							// Client's send channel is full, unregister it
+							go func(c *Client) {
+								h.unregister <- c
+							}(client)
+							log.Printf("Client send buffer full, disconnecting user %d", userID)
+						}
 					}
 				}
 			}

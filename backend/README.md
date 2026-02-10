@@ -65,10 +65,13 @@ backend/
 - `user_id`: INT (Foreign Key -> User)
 - `content`: TEXT (Optional)
 - `image`: BYTEA (Optional PNG image)
+- `nb_of_lines`: INT (Required, 1-5, Default: 1)
 - `created_at`: DATETIME
 - `updated_at`: DATETIME
 
-**Constraint**: At least one of `content` or `image` must be provided.
+**Constraints**: 
+- At least one of `content` or `image` must be provided
+- `nb_of_lines` must be between 1 and 5 (inclusive)
 
 ## API Endpoints
 
@@ -232,6 +235,7 @@ Response: 200 OK
     "user_id": 1,
     "content": "Hello world!",
     "has_image": false,
+    "nb_of_lines": 1,
     "user": {
       "id": 1,
       "name": "username",
@@ -253,7 +257,8 @@ Content-Type: application/json
 {
   "channel_id": 1,
   "content": "Hello world!",
-  "image_data": "base64_encoded_png_image_data" // optional
+  "image_data": "base64_encoded_png_image_data", // optional
+  "nb_of_lines": 1 // required, must be between 1 and 5
 }
 
 Response: 201 Created
@@ -263,6 +268,7 @@ Response: 201 Created
   "user_id": 1,
   "content": "Hello world!",
   "has_image": false,
+  "nb_of_lines": 1,
   "user": {
     "id": 1,
     "name": "username",
@@ -293,6 +299,7 @@ Response: 200 OK
   "user_id": 1,
   "content": "Hello world!",
   "has_image": false,
+  "nb_of_lines": 1,
   "user": {...},
   "created_at": "2026-02-05T12:00:00Z"
 }
@@ -366,6 +373,7 @@ When a new message is created in any subscribed channel, all subscribed clients 
   "user_id": 1,
   "content": "Hello world!",
   "has_image": false,
+  "nb_of_lines": 1,
   "user": {
     "id": 1,
     "name": "username",

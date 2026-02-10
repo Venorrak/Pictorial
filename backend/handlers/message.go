@@ -20,6 +20,7 @@ type CreateMessageRequest struct {
 	ChannelID uint    `json:"channel_id" binding:"required"`
 	Content   *string `json:"content"`
 	ImageData *string `json:"image_data"` // Base64 encoded image
+	NbOfLines int     `json:"nb_of_lines" binding:"required,min=1,max=5"`
 }
 
 // CreateMessage handles message creation
@@ -53,6 +54,7 @@ func CreateMessage(c *gin.Context) {
 		ChannelID: req.ChannelID,
 		UserID:    userID.(uint),
 		Content:   req.Content,
+		NbOfLines: req.NbOfLines,
 	}
 
 	// Decode base64 image if provided
